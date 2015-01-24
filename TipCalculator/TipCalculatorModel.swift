@@ -9,14 +9,17 @@
 import Foundation
 
 class TipCalculatorModel {
-    let total: Double
-    let taxPct: Double
-    let subtotal: Double
+    var total: Double
+    var taxPct: Double
+    var subtotal: Double {
+        get {
+            return total / (taxPct + 1)
+        }
+    }
 
     init(total: Double, taxPct: Double) {
         self.total = total
         self.taxPct = taxPct
-        subtotal = total / (taxPct + 1)
     }
 
     func calcTipWithTipPct(tipPct: Double) -> Double {
