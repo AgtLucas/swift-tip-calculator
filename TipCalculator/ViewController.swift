@@ -27,15 +27,24 @@ class ViewController: UIViewController {
     }
 
     @IBAction func calculateTapped(sender : AnyObject) {
+        tipCalc.total = Double((totalTextField.text as NSString).doubleValue)
+        let possibleTips = tipCalc.returnPossibleTips()
+        var results = ""
 
+        for (tipPct, tipValue) in possibleTips {
+            results += "\(tipPct)%: \(tipValue)\n"
+        }
+
+        resultsTextView.text = results
     }
 
     @IBAction func taxPercentageChanged(sender : AnyObject) {
-
+        tipCalc.taxPct = Double(taxPctSlider.value) / 100.0
+        refreshUI()
     }
 
     @IBAction func viewTapped(sender : AnyObject) {
-
+        totalTextField.resignFirstResponder()
     }
 
     let tipCalc = TipCalculatorModel(total: 33.25, taxPct: 0.06)
