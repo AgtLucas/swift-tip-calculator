@@ -34,7 +34,16 @@ class ViewController: UIViewController {
     }
 
     @IBAction func viewTapped(sender : AnyObject) {
-        
+
+    }
+
+    let tipCalc = TipCalculatorModel(total: 33.25, taxPct: 0.06)
+
+    func refreshUI() {
+        totalTextField.text = String(format: "%0.2f", tipCalc.total)
+        taxPctSlider.value = Float(tipCalc.taxPct) * 100.0
+        taxtPctLabel.text = "Tax Percentage (\(Int(taxPctSlider.value))%)"
+        resultsTextView.text = ""
     }
 
 
